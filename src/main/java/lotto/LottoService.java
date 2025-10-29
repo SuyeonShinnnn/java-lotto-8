@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoService {
     public int calculatePurchaseCount(int amount) {
@@ -18,14 +19,12 @@ public class LottoService {
     }
 
     public List<Lotto> generateLottoNumbers(int purchaseCount) {
-        List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < purchaseCount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)
-                    .stream()
-                    .sorted()
-                    .toList());
-            tickets.add(lotto);
-        }
-        return tickets;
+        return IntStream.range(0, purchaseCount)
+                .mapToObj(i -> new Lotto(
+                        Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                                .stream()
+                                .sorted()
+                                .toList()
+                )).toList();
     }
 }
