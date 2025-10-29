@@ -12,11 +12,8 @@ public class LottoController {
     public void run() {
         try{
             int amount = Integer.parseInt(view.inputPurchaseAmount());
-            int purchaseCount = amount % 1000;
+            int purchaseCount = service.calculatePurchaseCount(amount);
 
-            if(service.isValidPurchaseInput(amount)) {
-                throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다.");
-            }
         }catch (IllegalArgumentException e) {
             
         }
