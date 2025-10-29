@@ -16,8 +16,11 @@ public class LottoController {
         try {
             int amount = Integer.parseInt(view.inputPurchaseAmount());
             int purchaseCount = service.calculatePurchaseCount(amount);
-            List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
 
+            view.outputPurchaseCount(purchaseCount);
+
+            List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
+            view.outputLottoNumbers(tickets);
         } catch (IllegalArgumentException e) {
 
         }
