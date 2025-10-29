@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final LottoService service;
@@ -27,6 +28,10 @@ public class LottoController {
 
             String inputBonusNumber = view.inputBonusNumber();
             int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+            Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
+            double winningStatistics = service.calculateWinningStatistics(result);
+            view.outputWinningResult();
         } catch (IllegalArgumentException e) {
 
         }

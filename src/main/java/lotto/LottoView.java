@@ -29,4 +29,9 @@ public class LottoView {
             System.out.println(l.getNumbers());
         }
     }
+
+    public void outputWinningResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }
