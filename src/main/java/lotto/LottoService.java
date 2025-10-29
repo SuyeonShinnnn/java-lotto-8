@@ -56,13 +56,12 @@ public class LottoService {
         return 0;
     }
 
-    public double calculateWinningStatistics(Map<LottoWinningRank, Integer> result) {
-        int totalTickets = result.values().stream().mapToInt(Integer::intValue).sum();
-
+    public double calculateWinningStatistics(Map<LottoWinningRank, Integer> result, int amount) {
         long totalIncome = result.entrySet().stream()
                 .mapToLong(e -> (long) e.getKey().getReward() * e.getValue())
                 .sum();
 
-        return (double) totalIncome / totalTickets;
+        double statistics = (double) (totalIncome / amount) * 100;
+        return statistics;
     }
 }

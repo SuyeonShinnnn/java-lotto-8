@@ -30,8 +30,8 @@ public class LottoController {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
 
             Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
-            double winningStatistics = service.calculateWinningStatistics(result);
-            view.outputWinningResult();
+            double winningStatistics = service.calculateWinningStatistics(result, amount);
+            view.outputWinningResult(result, winningStatistics);
         } catch (IllegalArgumentException e) {
 
         }
