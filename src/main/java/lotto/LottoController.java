@@ -26,7 +26,7 @@ public class LottoController {
             List<Integer> winningNumbers = service.parseInput(inputWinningNumber);
 
             String inputBonusNumber = view.inputBonusNumber();
-            int bonusNuber = Integer.parseInt(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
         } catch (IllegalArgumentException e) {
 
         }
