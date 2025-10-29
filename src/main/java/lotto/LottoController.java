@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoController {
     private final LottoService service;
     private final LottoView view;
@@ -10,12 +13,13 @@ public class LottoController {
     }
 
     public void run() {
-        try{
+        try {
             int amount = Integer.parseInt(view.inputPurchaseAmount());
             int purchaseCount = service.calculatePurchaseCount(amount);
+            List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
 
-        }catch (IllegalArgumentException e) {
-            
+        } catch (IllegalArgumentException e) {
+
         }
     }
 }
