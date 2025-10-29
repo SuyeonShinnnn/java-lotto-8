@@ -10,6 +10,16 @@ public class LottoView {
         return readLine();
     }
 
+    public String inputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return readLine();
+    }
+
+    public String inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return readLine();
+    }
+
     public void outputPurchaseCount(int purchaseCount) {
         System.out.println(purchaseCount + "개를 구매했습니다.");
     }

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -26,5 +27,11 @@ public class LottoService {
                                 .sorted()
                                 .toList()
                 )).toList();
+    }
+
+    public List<Integer> parseInput(String[] input) {
+        return Arrays.stream(input)
+                .map(Integer::parseInt)
+                .toList();
     }
 }

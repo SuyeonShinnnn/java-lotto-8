@@ -21,6 +21,12 @@ public class LottoController {
 
             List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
             view.outputLottoNumbers(tickets);
+
+            String[] inputWinningNumber = view.inputWinningNumber().split(",");
+            List<Integer> winningNumbers = service.parseInput(inputWinningNumber);
+
+            String inputBonusNumber = view.inputBonusNumber();
+            int bonusNuber = Integer.parseInt(inputBonusNumber);
         } catch (IllegalArgumentException e) {
 
         }
