@@ -23,7 +23,7 @@ public class LottoController {
             List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
             view.outputLottoNumbers(tickets);
 
-            String[] inputWinningNumber = view.inputWinningNumber().split(",");
+            String[] inputWinningNumber = view.inputWinningNumber().trim().split(",");
             List<Integer> winningNumbers = service.parseWinningNumberInput(inputWinningNumber);
 
             String inputBonusNumber = view.inputBonusNumber();
