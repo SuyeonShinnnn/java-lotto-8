@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -30,8 +33,27 @@ public class LottoView {
         }
     }
 
-    public void outputWinningResult() {
+    public void outputWinningResult(Map<LottoWinningRank, Integer> result, double statistics) {
         System.out.println("당첨 통계");
         System.out.println("---");
+
+        Comparator<LottoWinningRank> rankComparator = Comparator
+                .comparingInt(LottoWinningRank::getMatchCount)
+                .thenComparing(LottoWinningRank::hasBonus);
+
+        Arrays.stream(LottoWinningRank.values())
+                .sorted(rankComparator)
+                .forEach(rank -> outputRankResult(rank, result));
+
+        System.out.println("---");
+        System.out.printf("총 수익률은 %.2f입니다.%n", statistics);
+    }
+
+    private void outputRankResult(LottoWinningRank rank, Map<LottoWinningRank, Integer> result) {
+        System.out.printf("%d개 일치%s (%,d원) - %d개%n",
+                rank.getMatchCount(),
+                rank.hasBonus() ? ", 보너스 볼 일치" : "",
+                rank.getReward(),
+                result.getOrDefault(rank, 0));
     }
 }
