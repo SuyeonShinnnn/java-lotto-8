@@ -14,17 +14,17 @@ public class LottoView {
     }
 
     public String inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return readLine();
     }
 
     public String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return readLine();
     }
 
     public void outputPurchaseCount(int purchaseCount) {
-        System.out.println(purchaseCount + "개를 구매했습니다.");
+        System.out.println("\n" + purchaseCount + "개를 구매했습니다.");
     }
 
     public void outputLottoNumbers(List<Lotto> lottos) {
@@ -34,7 +34,7 @@ public class LottoView {
     }
 
     public void outputWinningResult(Map<LottoWinningRank, Integer> result, double statistics) {
-        System.out.println("당첨 통계");
+        System.out.println("\n" + "당첨 통계");
         System.out.println("---");
 
         Comparator<LottoWinningRank> rankComparator = Comparator
@@ -46,7 +46,7 @@ public class LottoView {
                 .forEach(rank -> outputRankResult(rank, result));
 
         System.out.println("---");
-        System.out.printf("총 수익률은 %.2f입니다.%n", statistics);
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", statistics);
     }
 
     private void outputRankResult(LottoWinningRank rank, Map<LottoWinningRank, Integer> result) {
