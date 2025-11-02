@@ -24,7 +24,7 @@ public class LottoController {
             view.outputLottoNumbers(tickets);
 
             String[] inputWinningNumber = view.inputWinningNumber().split(",");
-            List<Integer> winningNumbers = service.parseInput(inputWinningNumber);
+            List<Integer> winningNumbers = service.parseWinningNumberInput(inputWinningNumber);
 
             String inputBonusNumber = view.inputBonusNumber();
             int bonusNumber = Integer.parseInt(inputBonusNumber);

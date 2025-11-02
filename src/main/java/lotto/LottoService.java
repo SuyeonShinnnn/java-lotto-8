@@ -26,7 +26,7 @@ public class LottoService {
                 )).toList();
     }
 
-    public List<Integer> parseInput(String[] input) {
+    public List<Integer> parseWinningNumberInput(String[] input) {
         return Arrays.stream(input)
                 .map(Integer::parseInt)
                 .toList();
