@@ -28,6 +28,7 @@ public class LottoController {
 
             String inputBonusNumber = view.inputBonusNumber();
             int bonusNumber = Integer.parseInt(inputBonusNumber);
+            service.validateBonusNumber(bonusNumber, winningNumbers);
 
             Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
             double winningStatistics = service.calculateWinningStatistics(result, amount);

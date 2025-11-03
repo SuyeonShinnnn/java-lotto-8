@@ -32,6 +32,16 @@ public class LottoService {
                 .toList();
     }
 
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다: ");
+        }
+
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
+        }
+    }
+
     public Map<LottoWinningRank, Integer> getWinningResult(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
         Map<LottoWinningRank, Integer> result = new HashMap<>();
         for (Lotto ticket : tickets) {
