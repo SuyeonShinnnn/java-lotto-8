@@ -13,26 +13,34 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            int amount = getPurchaseAmount();
-            List<Lotto> tickets = generateLottoTickets(amount);
 
-            Lotto winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber(winningNumbers);
+        int amount = getPurchaseAmount();
+        List<Lotto> tickets = generateLottoTickets(amount);
 
-            Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
-            double statistics = service.calculateWinningStatistics(result, amount);
-            view.outputWinningResult(result, statistics);
-        } catch (IllegalArgumentException e) {
-            view.outputErrorMessage(e.getMessage());
-        }
+        Lotto winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+
+        Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
+        double statistics = service.calculateWinningStatistics(result, amount);
+        view.outputWinningResult(result, statistics);
     }
 
+    /**
+     * 구매 금액 입력 (예외 발생 시 재입력)
+     */
     private int getPurchaseAmount() {
-        int amount = Integer.parseInt(view.inputPurchaseAmount());
-        int purchaseCount = service.calculatePurchaseCount(amount);
-        view.outputPurchaseCount(purchaseCount);
-        return amount;
+        while (true) {
+            try {
+                int amount = Integer.parseInt(view.inputPurchaseAmount());
+                int purchaseCount = service.calculatePurchaseCount(amount);
+                view.outputPurchaseCount(purchaseCount);
+                return amount;
+            } catch (NumberFormatException e) {
+                ExceptionHandler.handle(e);
+            } catch (IllegalArgumentException e) {
+                ExceptionHandler.handle(e);
+            }
+        }
     }
 
     private List<Lotto> generateLottoTickets(int amount) {
@@ -43,13 +51,29 @@ public class LottoController {
     }
 
     private Lotto getWinningNumbers() {
-        String[] input = view.inputWinningNumber().trim().split(",");
-        return service.parseWinningNumberInput(input);
+        while (true) {
+            try {
+                String[] input = view.inputWinningNumber().trim().split(",");
+                return service.parseWinningNumberInput(input);
+            } catch (NumberFormatException e) {
+                ExceptionHandler.handle(e);
+            } catch (IllegalArgumentException e) {
+                ExceptionHandler.handle(e);
+            }
+        }
     }
 
     private int getBonusNumber(Lotto winningNumbers) {
-        int bonusNumber = Integer.parseInt(view.inputBonusNumber());
-        service.validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
+        while (true) {
+            try {
+                int bonusNumber = Integer.parseInt(view.inputBonusNumber());
+                service.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                ExceptionHandler.handle(e);
+            } catch (IllegalArgumentException e) {
+                ExceptionHandler.handle(e);
+            }
+        }
     }
 }

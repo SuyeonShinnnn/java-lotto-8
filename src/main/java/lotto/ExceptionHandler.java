@@ -1,6 +1,6 @@
 package lotto;
 
-public class LottoExceptionHandler {
+public class ExceptionHandler {
 
     public static void handle(Exception e) {
         if (e instanceof NumberFormatException) {
