@@ -53,8 +53,6 @@ public class LottoController {
             try {
                 String[] input = view.inputWinningNumber().split(",");
                 return service.parseWinningNumberInput(input);
-            } catch (NumberFormatException e) {
-                ExceptionHandler.handle(e);
             } catch (IllegalArgumentException e) {
                 ExceptionHandler.handle(e);
             }
@@ -67,8 +65,6 @@ public class LottoController {
                 int bonusNumber = Integer.parseInt(view.inputBonusNumber());
                 service.validateBonusNumber(bonusNumber, winningNumbers);
                 return bonusNumber;
-            } catch (NumberFormatException e) {
-                ExceptionHandler.handle(e);
             } catch (IllegalArgumentException e) {
                 ExceptionHandler.handle(e);
             }
