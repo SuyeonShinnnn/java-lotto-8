@@ -24,15 +24,17 @@ public class LottoController {
         view.outputWinningResult(result, statistics);
     }
 
+    private int readPurchaseAmount() {
+        int amount = Integer.parseInt(view.inputPurchaseAmount());
+        int purchaseCount = service.calculatePurchaseCount(amount);
+        view.outputPurchaseCount(purchaseCount);
+        return amount;
+    }
+
     private int getPurchaseAmount() {
         while (true) {
             try {
-                int amount = Integer.parseInt(view.inputPurchaseAmount());
-                int purchaseCount = service.calculatePurchaseCount(amount);
-                view.outputPurchaseCount(purchaseCount);
-                return amount;
-            } catch (NumberFormatException e) {
-                ExceptionHandler.handle(e);
+                return readPurchaseAmount();
             } catch (IllegalArgumentException e) {
                 ExceptionHandler.handle(e);
             }
