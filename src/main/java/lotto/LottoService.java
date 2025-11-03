@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 public class LottoService {
     public int calculatePurchaseCount(int amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로 구매 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
         return amount / 1000;
     }
@@ -34,11 +34,11 @@ public class LottoService {
 
     public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다: ");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
 
         if(winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 
