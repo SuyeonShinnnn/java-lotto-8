@@ -28,7 +28,7 @@ public class LottoView {
     }
 
     public void outputLottoNumbers(List<Lotto> lottos) {
-        for(Lotto l: lottos) {
+        for (Lotto l : lottos) {
             System.out.println(l.getNumbers());
         }
     }
@@ -55,5 +55,9 @@ public class LottoView {
                 rank.hasBonus() ? ", 보너스 볼 일치" : "",
                 rank.getReward(),
                 result.getOrDefault(rank, 0));
+    }
+
+    public void outputErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

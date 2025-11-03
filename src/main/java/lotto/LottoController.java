@@ -24,6 +24,7 @@ public class LottoController {
             double statistics = service.calculateWinningStatistics(result, amount);
             view.outputWinningResult(result, statistics);
         } catch (IllegalArgumentException e) {
+            view.outputErrorMessage(e.getMessage());
         }
     }
 
