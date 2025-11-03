@@ -45,7 +45,6 @@ public class LottoView {
                 .sorted(rankComparator)
                 .forEach(rank -> outputRankResult(rank, result));
 
-        System.out.println("---");
         System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics);
     }
 
