@@ -37,12 +37,9 @@ public class LottoView {
         System.out.println("\n" + "당첨 통계");
         System.out.println("---");
 
-        Comparator<LottoWinningRank> rankComparator = Comparator
-                .comparingInt(LottoWinningRank::getMatchCount)
-                .thenComparing(LottoWinningRank::hasBonus);
-
         Arrays.stream(LottoWinningRank.values())
-                .sorted(rankComparator)
+                .sorted(Comparator.comparingInt(LottoWinningRank::getMatchCount)
+                        .thenComparing(LottoWinningRank::hasBonus))
                 .forEach(rank -> outputRankResult(rank, result));
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics);
