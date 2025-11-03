@@ -46,7 +46,7 @@ public class LottoView {
                 .forEach(rank -> outputRankResult(rank, result));
 
         System.out.println("---");
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", statistics);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics);
     }
 
     private void outputRankResult(LottoWinningRank rank, Map<LottoWinningRank, Integer> result) {
@@ -55,9 +55,5 @@ public class LottoView {
                 rank.hasBonus() ? ", 보너스 볼 일치" : "",
                 rank.getReward(),
                 result.getOrDefault(rank, 0));
-    }
-
-    public void outputErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
     }
 }

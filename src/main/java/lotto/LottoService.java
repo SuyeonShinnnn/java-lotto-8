@@ -63,7 +63,8 @@ public class LottoService {
                 .mapToLong(e -> (long) e.getKey().getReward() * e.getValue())
                 .sum();
 
-        double statistics = (double) (totalIncome / amount) * 100;
+        double statistics = ((double) totalIncome / amount) * 100;
+        statistics = Math.round(statistics * 10) / 10.0;
         return statistics;
     }
 }

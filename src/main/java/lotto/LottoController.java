@@ -13,7 +13,6 @@ public class LottoController {
     }
 
     public void run() {
-
         int amount = getPurchaseAmount();
         List<Lotto> tickets = generateLottoTickets(amount);
 
