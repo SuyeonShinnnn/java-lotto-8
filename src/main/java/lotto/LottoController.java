@@ -25,9 +25,6 @@ public class LottoController {
         view.outputWinningResult(result, statistics);
     }
 
-    /**
-     * 구매 금액 입력 (예외 발생 시 재입력)
-     */
     private int getPurchaseAmount() {
         while (true) {
             try {
