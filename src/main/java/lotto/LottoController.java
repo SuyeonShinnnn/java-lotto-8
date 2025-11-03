@@ -17,7 +17,7 @@ public class LottoController {
             int amount = getPurchaseAmount();
             List<Lotto> tickets = generateLottoTickets(amount);
 
-            List<Integer> winningNumbers = getWinningNumbers();
+            Lotto winningNumbers = getWinningNumbers();
             int bonusNumber = getBonusNumber(winningNumbers);
 
             Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
@@ -41,12 +41,12 @@ public class LottoController {
         return tickets;
     }
 
-    private List<Integer> getWinningNumbers() {
+    private Lotto getWinningNumbers() {
         String[] input = view.inputWinningNumber().trim().split(",");
         return service.parseWinningNumberInput(input);
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) {
+    private int getBonusNumber(Lotto winningNumbers) {
         int bonusNumber = Integer.parseInt(view.inputBonusNumber());
         service.validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;

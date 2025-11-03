@@ -26,23 +26,23 @@ public class LottoService {
                 )).toList();
     }
 
-    public List<Integer> parseWinningNumberInput(String[] input) {
-        return Arrays.stream(input)
+    public Lotto parseWinningNumberInput(String[] input) {
+        return new Lotto(Arrays.stream(input)
                 .map(Integer::parseInt)
-                .toList();
+                .toList());
     }
 
-    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    public void validateBonusNumber(int bonusNumber, Lotto winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
 
-        if(winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 
-    public Map<LottoWinningRank, Integer> getWinningResult(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<LottoWinningRank, Integer> getWinningResult(List<Lotto> tickets, Lotto winningNumbers, int bonusNumber) {
         Map<LottoWinningRank, Integer> result = new HashMap<>();
         for (Lotto ticket : tickets) {
             int matchCount = (int) ticket.getNumbers().stream()
