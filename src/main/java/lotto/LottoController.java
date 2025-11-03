@@ -49,7 +49,7 @@ public class LottoController {
     private Lotto getWinningNumbers() {
         while (true) {
             try {
-                String[] input = view.inputWinningNumber().trim().split(",");
+                String[] input = view.inputWinningNumber().split(",");
                 return service.parseWinningNumberInput(input);
             } catch (NumberFormatException e) {
                 ExceptionHandler.handle(e);

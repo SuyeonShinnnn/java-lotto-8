@@ -28,6 +28,7 @@ public class LottoService {
 
     public Lotto parseWinningNumberInput(String[] input) {
         return new Lotto(Arrays.stream(input)
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList());
     }
