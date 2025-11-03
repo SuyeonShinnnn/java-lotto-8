@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,26 +14,41 @@ public class LottoController {
 
     public void run() {
         try {
-            int amount = Integer.parseInt(view.inputPurchaseAmount());
-            int purchaseCount = service.calculatePurchaseCount(amount);
+            int amount = getPurchaseAmount();
+            List<Lotto> tickets = generateLottoTickets(amount);
 
-            view.outputPurchaseCount(purchaseCount);
-
-            List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
-            view.outputLottoNumbers(tickets);
-
-            String[] inputWinningNumber = view.inputWinningNumber().trim().split(",");
-            List<Integer> winningNumbers = service.parseWinningNumberInput(inputWinningNumber);
-
-            String inputBonusNumber = view.inputBonusNumber();
-            int bonusNumber = Integer.parseInt(inputBonusNumber);
-            service.validateBonusNumber(bonusNumber, winningNumbers);
+            List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber(winningNumbers);
 
             Map<LottoWinningRank, Integer> result = service.getWinningResult(tickets, winningNumbers, bonusNumber);
-            double winningStatistics = service.calculateWinningStatistics(result, amount);
-            view.outputWinningResult(result, winningStatistics);
+            double statistics = service.calculateWinningStatistics(result, amount);
+            view.outputWinningResult(result, statistics);
         } catch (IllegalArgumentException e) {
-
         }
+    }
+
+    private int getPurchaseAmount() {
+        int amount = Integer.parseInt(view.inputPurchaseAmount());
+        int purchaseCount = service.calculatePurchaseCount(amount);
+        view.outputPurchaseCount(purchaseCount);
+        return amount;
+    }
+
+    private List<Lotto> generateLottoTickets(int amount) {
+        int purchaseCount = service.calculatePurchaseCount(amount);
+        List<Lotto> tickets = service.generateLottoNumbers(purchaseCount);
+        view.outputLottoNumbers(tickets);
+        return tickets;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        String[] input = view.inputWinningNumber().trim().split(",");
+        return service.parseWinningNumberInput(input);
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber = Integer.parseInt(view.inputBonusNumber());
+        service.validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 }
